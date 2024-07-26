@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh "/bin/bash /data/automation/host.sh ${params.BUILD}"
+                sh "echo $REPOSITORY"
+                sh "env | sort"
+            }
+        }
+    }
+}
