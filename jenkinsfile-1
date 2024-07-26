@@ -1,9 +1,14 @@
 pipeline {
     agent any
-
+    parameters {
+    string(name: 'REPOSITORY', defaultValue: 'systest-RAF', description: 'select repo')
+    string(name: 'BUILD', defaultValue: 'ICAS1-50.1.1', description: 'specify build name')
+    
+    }
     stages {
         stage('Hello') {
             steps {
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 sh "/bin/bash /data/automation/host.sh ${params.BUILD}"
                 sh "echo $REPOSITORY"
                 sh "env | sort"
